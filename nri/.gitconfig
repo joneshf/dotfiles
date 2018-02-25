@@ -1,16 +1,18 @@
 # This is Git's per-user configuration file.
-[user]
-# Please adapt and uncomment the following lines:
-name = Hardy Jones
-email = hardy@noredink.com
+[commit]
+gpgsign = true
 [filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-[push]
-	default = simple
-[help]
-	autocorrect = 30
+clean = git-lfs clean -- %f
+process = git-lfs filter-process
+required = true
+smudge = git-lfs smudge -- %f
 [github]
-	user = joneshf
+user = joneshf
+[help]
+autocorrect = 30
+[push]
+default = simple
+[user]
+email = hardy@noredink.com
+name = Hardy Jones
+signingkey = 53FEB62789F62A82

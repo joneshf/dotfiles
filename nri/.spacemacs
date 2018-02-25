@@ -87,8 +87,7 @@ values."
      syntax-checking
      (terraform :variables
                 terraform-format-on-save-mode t)
-     (wakatime :variables
-               wakatime-api-key "INSERT_THE_ACTUAL_KEY")
+     wakatime
      version-control
      yaml
      )

@@ -1,4 +1,4 @@
 syn on
 set ruler
 
-Plug 'wakatime/vim-wakatime'
+" Plug 'wakatime/vim-wakatime'

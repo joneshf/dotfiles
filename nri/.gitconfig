@@ -1,18 +1,44 @@
 # This is Git's per-user configuration file.
+
 [commit]
 gpgsign = true
+
 [filter "lfs"]
 clean = git-lfs clean -- %f
 process = git-lfs filter-process
 required = true
 smudge = git-lfs smudge -- %f
+
 [github]
 user = joneshf
+
 [help]
 autocorrect = 30
+
 [push]
 default = simple
+
 [user]
 email = hardy@noredink.com
 name = Hardy Jones
 signingkey = 53FEB62789F62A82
+
+[core]
+pager = diff-so-fancy | less --RAW-CONTROL-CHARS --no-init --quit-if-one-screen --tabs=4
+
+[color]
+ui = true
+
+[color "diff"]
+commit = yellow bold
+frag = magenta bold
+meta = yellow
+new = green bold
+old = red bold
+whitespace = red reverse
+
+[color "diff-highlight"]
+newHighlight = green bold 22
+newNormal = green bold
+oldHighlight = red bold 52
+oldNormal = red bold

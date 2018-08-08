@@ -1,6 +1,3 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/joneshf/.oh-my-zsh
-
 # Set name of the theme to load.
 # Look in ${ZSH}/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -36,20 +33,10 @@ plugins=(
 
 # User configuration
 
-export EDITOR=vim
-
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-
 source $ZSH/oh-my-zsh.sh
-
-path+=~/.bin
-path+=~/.local/bin
 
 # git
 alias grho='git reset --hard origin/$(git_current_branch)'
-
-# go
-path+=~/go/bin
 
 # gpg
 if test -f ~/.gnupg/.gpg-agent-info -a -n "$(pgrep gpg-agent)"; then

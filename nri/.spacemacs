@@ -45,7 +45,7 @@ values."
      elixir
      (elm :variables
           elm-format-on-save t
-          elm-format-command "elm-format-0.7.0-exp")
+          elm-format-command "npx elm-format@exp")
      emacs-lisp
      emoji
      erlang
@@ -99,8 +99,10 @@ values."
    '(
      dhall-mode
      groovy-mode
+     nix-mode
      ruby-hash-syntax
      ruby-refactor
+     telephone-line
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -370,12 +372,30 @@ you should place your code here."
   (setq js2-basic-offset 2)
   (setq psc-ide-use-npm-bin t)
   (setq ruby-insert-encoding-magic-comment nil)
+  (setq telephone-line-lhs
+        '((evil . (telephone-line-evil-tag-segment))
+          (accent . (telephone-line-buffer-segment))
+          (nil . (telephone-line-airline-position-segment))
+          (nil . (telephone-line-major-mode-segment))))
+  (setq telephone-line-primary-left-separator 'telephone-line-gradient)
+  (setq telephone-line-primary-right-separator 'telephone-line-gradient)
+  (setq telephone-line-secondary-left-separator 'telephone-line-nil)
+  (setq telephone-line-secondary-right-separator 'telephone-line-nil)
+  (setq telephone-line-rhs
+        '((nil . (telephone-line-misc-info-segment))
+          (accent . (telephone-line-simple-minor-mode-segment))
+          (evil . (telephone-line-vc-segment))))
   (setq whitespace-style '(face lines-tail))
+  (telephone-line-mode t)
   (add-hook 'haskell-mode-hook
             (lambda ()
               (interactive)
               (setq buffer-face-mode-face '(:family "Futura"))
               (buffer-face-mode)))
+  (add-hook 'dhall-mode-hook
+            (lambda ()
+              (setq dhall-format-command "dhall"
+                    dhall-format-options '("format" "--inplace"))))
   (add-hook 'elm-mode-hook
             (lambda ()
               (interactive)
@@ -405,8 +425,9 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(elm-format-command "elm-format-0.7.0-exp")
- '(elm-format-on-save nil)
+ '(elm-format-command "elm-format-0.7.0-exp" t)
+ '(elm-format-on-save nil t)
+ '(evil-want-Y-yank-to-eol nil)
  '(haskell-indentation-left-offset 3)
  '(haskell-indentation-starter-offset 4)
  '(haskell-indentation-where-post-offset 0)
@@ -414,9 +435,9 @@ you should place your code here."
    (quote
     (flyspell-prog-mode interactive-haskell-mode spacemacs/init-haskell-mode spacemacs//init-jump-handlers-haskell-mode spacemacs//init-company-haskell-mode company-mode)))
  '(helm-always-two-windows t)
- '(helm-bookmark-show-location t t)
+ '(helm-bookmark-show-location t)
  '(helm-descbinds-mode t)
- '(helm-descbinds-window-style (quote split) t)
+ '(helm-descbinds-window-style (quote split))
  '(helm-display-function (quote spacemacs//display-helm-window))
  '(helm-display-header-line nil)
  '(helm-echo-input-in-header-line t)
@@ -429,8 +450,22 @@ you should place your code here."
  '(hindent-reformat-buffer-on-save t)
  '(package-selected-packages
    (quote
-    (org-mime helm-spotify-plus prodigy plantuml-mode lsp-ui lsp-haskell lsp-mode ox-reveal ghub let-alist dhall-mode groovy-mode enh-ruby-mode ruby-hash-syntax projectile-rails feature-mode erlang org-category-capture magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito ht insert-shebang fish-mode company-shell ruby-refactor rainbow-mode rainbow-identifiers color-identifiers-mode selectric-mode flyspell-popup nginx-mode wakatime-mode clojure-snippets clj-refactor inflections edn paredit peg cider-eval-sexp-fu cider seq queue clojure-mode idris-mode prop-menu winum shut-up fuzzy flycheck-credo company-ansible dockerfile-mode docker tablist docker-tramp jinja2-mode ansible-doc ansible terraform-mode hcl-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic omnisharp csharp-mode engine-mode csv-mode psci purescript-mode psc-ide emoji-cheat-sheet-plus company-emoji ranger sql-indent intero hlint-refactor hindent helm-hoogle haskell-snippets flycheck-haskell company-ghci company-ghc ghc haskell-mode company-cabal cmm-mode pcache yaml-mode helm-spotify spotify multi xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help graphviz-dot-mode ag ob-elixir flycheck-mix alchemist elixir-mode all-the-icons reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl list-environment web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby flycheck-elm elm-mode helm-company helm-c-yasnippet company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete smeargle orgit org-projectile org-present org org-pomodoro alert log4e gntp org-download mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor diff-hl auto-dictionary ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme)))
- '(safe-local-variable-values (quote (ruby-test-runner rspec)))
+    (nix-mode telephone-line org-mime helm-spotify-plus prodigy plantuml-mode lsp-ui lsp-haskell lsp-mode ox-reveal ghub let-alist dhall-mode groovy-mode enh-ruby-mode ruby-hash-syntax projectile-rails feature-mode erlang org-category-capture magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito ht insert-shebang fish-mode company-shell ruby-refactor rainbow-mode rainbow-identifiers color-identifiers-mode selectric-mode flyspell-popup nginx-mode wakatime-mode clojure-snippets clj-refactor inflections edn paredit peg cider-eval-sexp-fu cider seq queue clojure-mode idris-mode prop-menu winum shut-up fuzzy flycheck-credo company-ansible dockerfile-mode docker tablist docker-tramp jinja2-mode ansible-doc ansible terraform-mode hcl-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic omnisharp csharp-mode engine-mode csv-mode psci purescript-mode psc-ide emoji-cheat-sheet-plus company-emoji ranger sql-indent intero hlint-refactor hindent helm-hoogle haskell-snippets flycheck-haskell company-ghci company-ghc ghc haskell-mode company-cabal cmm-mode pcache yaml-mode helm-spotify spotify multi xterm-color shell-pop multi-term eshell-z eshell-prompt-extras esh-help graphviz-dot-mode ag ob-elixir flycheck-mix alchemist elixir-mode all-the-icons reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl list-environment web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby bundler inf-ruby flycheck-elm elm-mode helm-company helm-c-yasnippet company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete smeargle orgit org-projectile org-present org org-pomodoro alert log4e gntp org-download mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor diff-hl auto-dictionary ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme)))
+ '(psc-ide-add-import-on-completion t t)
+ '(psc-ide-rebuild-on-save nil t)
+ '(safe-local-variable-values
+   (quote
+    ((hindent-reformat-buffer-on-save . t)
+     (eval set
+           (make-variable-buffer-local
+            (quote hindent-process-path))
+           (expand-file-name "script/hindent.sh"
+                             (locate-dominating-file
+                              (buffer-file-name)
+                              ".dir-locals.el")))
+     (elixir-enable-compilation-checking . t)
+     (elixir-enable-compilation-checking)
+     ruby-test-runner rspec)))
  '(spaceline-helm-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

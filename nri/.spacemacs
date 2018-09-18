@@ -359,7 +359,6 @@ you should place your code here."
   (global-set-key (kbd "s-=") 'zoom-frm-in)
   (global-set-key (kbd "s--") 'zoom-frm-out)
   (setq-default abbrev-mode t)
-  (setq dhall-format-at-save nil)
   (setq enh-ruby-comment-column 32)
   (setq enh-ruby-bounce-deep-indent t)
   (setq enh-ruby-deep-indent-paren t)

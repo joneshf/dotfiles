@@ -35,6 +35,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# direnv
+eval "$(direnv hook zsh)"
+
 # git
 alias grho='git reset --hard origin/$(git_current_branch)'
 

@@ -24,7 +24,7 @@ name = Hardy Jones
 signingkey = 53FEB62789F62A82
 
 [core]
-pager = diff-so-fancy | less --RAW-CONTROL-CHARS --no-init --quit-if-one-screen --tabs=4
+pager = bat --language diff
 
 [color]
 ui = true

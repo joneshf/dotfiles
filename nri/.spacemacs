@@ -181,8 +181,8 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Fira Code"
-                               :size 18
+   dotspacemacs-default-font '("Sans Forgetica"
+                               :size 20
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -390,7 +390,7 @@ you should place your code here."
   (add-hook 'haskell-mode-hook
             (lambda ()
               (interactive)
-              (setq buffer-face-mode-face '(:family "Futura"))
+              (setq buffer-face-mode-face '(:family "Sans Forgetica"))
               (buffer-face-mode)))
   (add-hook 'dhall-mode-hook
             (lambda ()
@@ -399,7 +399,7 @@ you should place your code here."
   (add-hook 'elm-mode-hook
             (lambda ()
               (interactive)
-              (setq buffer-face-mode-face '(:family "Futura"))
+              (setq buffer-face-mode-face '(:family "Sans Forgetica"))
               (buffer-face-mode)))
   (add-hook 'elm-mode-hook
             (lambda ()

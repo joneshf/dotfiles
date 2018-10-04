@@ -431,7 +431,7 @@ you should place your code here."
  '(haskell-indentation-where-post-offset 0)
  '(haskell-mode-hook
    (quote
-    (flyspell-prog-mode interactive-haskell-mode spacemacs/init-haskell-mode spacemacs//init-jump-handlers-haskell-mode spacemacs//init-company-haskell-mode company-mode)) t)
+    (flyspell-prog-mode interactive-haskell-mode spacemacs/init-haskell-mode spacemacs//init-jump-handlers-haskell-mode spacemacs//init-company-haskell-mode company-mode)))
  '(helm-always-two-windows t)
  '(helm-bookmark-show-location t)
  '(helm-descbinds-mode t)

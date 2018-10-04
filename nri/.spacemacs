@@ -395,7 +395,10 @@ you should place your code here."
   (add-hook 'dhall-mode-hook
             (lambda ()
               (setq dhall-format-command "dhall"
-                    dhall-format-options '("format" "--inplace"))))
+                    dhall-format-options '("format" "--inplace"))
+              (interactive)
+              (setq buffer-face-mode-face '(:family "Sans Forgetica"))
+              (buffer-face-mode)))
   (add-hook 'elm-mode-hook
             (lambda ()
               (interactive)

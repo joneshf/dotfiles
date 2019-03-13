@@ -1,0 +1,19 @@
+[commit]
+	gpgsign = true
+
+[core]
+	editor = vim
+
+[credential]
+	helper = cache
+
+[help]
+	autocorrect = 1
+
+[url "https://"]
+	insteadOf = git://
+
+[user]
+	name = joneshf
+	email = jones3.hardy@gmail.com
+	signingkey = C8FFFC4E889B880E

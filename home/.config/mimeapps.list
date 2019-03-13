@@ -1,0 +1,23 @@
+[Added Associations]
+application/x-iwork-keynote-sffkey=libreoffice-impress.desktop;
+video/mp4=vlc.desktop;
+text/plain=emacs.desktop;sublime_text_3.desktop;
+application/pdf=chromium.desktop;zathura-pdf-poppler.desktop;
+application/x-wine-extension-ini=wine-extension-ini.desktop;
+video/x-matroska=vlc.desktop;
+audio/mpeg=audacity.desktop;vlc.desktop;
+application/postscript=zathura-ps.desktop;
+application/json=sublime_text_3.desktop;
+application/xml=sublime_text_3.desktop;wine-extension-xml.desktop;
+image/png=chromium.desktop;
+video/x-ms-wmv=chromium.desktop;vlc.desktop;
+image/jpeg=wine-extension-jfif.desktop;
+application/octet-stream=sublime_text_3.desktop;
+video/x-flv=vlc.desktop;
+
+[Default Applications]
+text/html=brave-bin.desktop
+x-scheme-handler/http=brave-bin.desktop
+x-scheme-handler/https=brave-bin.desktop
+x-scheme-handler/about=brave-bin.desktop
+x-scheme-handler/unknown=brave-bin.desktop

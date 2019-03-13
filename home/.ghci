@@ -1,0 +1,3 @@
+:set prompt "\ESC[38;5;56m\STXλ\ESC[m\STX: "
+
+let asAppliedTo h x = let _ = h x in h
